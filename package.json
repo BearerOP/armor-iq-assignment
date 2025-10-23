@@ -18,7 +18,7 @@
     "prisma:seed": "ts-node prisma/seed.ts",
     "prisma:studio": "prisma studio",
     "docker:build": "docker build -t task-management-api .",
-    "docker:run": "docker run -p 3000:3000 -e DATABASE_URL=\"postgresql://neondb_owner:npg_Oj9a4rMIChDb@ep-long-silence-a47ewepx-pooler.us-east-1.aws.neon.tech/taskdb?sslmode=require&channel_binding=require\" -e JWT_SECRET=\"your-super-secret-jwt-key-change-in-production\" -e PORT=3000 -e NODE_ENV=\"production\" task-management-api"
+    "docker:run": "docker run -p 3000:3000 -e DATABASE_URL=\"postgresql://user:password@localhost:5432/task_management_db?schema=public\" -e JWT_SECRET=\"your-super-secret-jwt-key-change-in-production\" -e PORT=3000 -e NODE_ENV=\"production\" task-management-api"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

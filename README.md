@@ -2,59 +2,6 @@
 
 A robust, scalable REST API built with **NestJS**, **TypeScript**, **PostgreSQL**, and **Prisma** for managing tasks across multiple organizations with role-based access control.
 
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Quick Start](#-quick-start)
-- [Environment Setup](#-environment-setup)
-- [Database Setup](#-database-setup)
-- [API Documentation](#-api-documentation)
-- [Authentication Flow](#-authentication-flow)
-- [Role-Based Access Control](#-role-based-access-control)
-- [Testing](#-testing)
-- [Project Structure](#-project-structure)
-- [API Endpoints](#-api-endpoints)
-- [Error Handling](#-error-handling)
-- [Security Features](#-security-features)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-
-## ✨ Features
-
-### 🔐 **Authentication & Authorization**
-- JWT-based authentication with 7-day token expiration
-- Role-based access control (ADMIN/USER)
-- Multi-organization support with data isolation
-- Secure password hashing with bcrypt
-
-### 📋 **Task Management**
-- Complete CRUD operations for tasks
-- Task status tracking (PENDING, IN_PROGRESS, COMPLETED, CANCELLED)
-- Priority levels (LOW, MEDIUM, HIGH, URGENT)
-- Due date management
-- Organization-specific task isolation
-
-### 👥 **User Management**
-- User registration and profile management
-- Organization-based user grouping
-- Admin and regular user roles
-- Cross-organization access prevention
-
-### 🏢 **Organization Management**
-- Multi-tenant architecture
-- Organization creation and management
-- User and task statistics per organization
-- Complete data isolation between organizations
-
-### 🛡️ **Security Features**
-- Input validation with class-validator
-- UUID validation for all ID parameters
-- CORS configuration
-- Request sanitization
-- Comprehensive error handling
-
 ## 🛠️ Tech Stack
 
 ### **Backend Framework**
@@ -76,9 +23,6 @@ A robust, scalable REST API built with **NestJS**, **TypeScript**, **PostgreSQL*
 - **class-validator** - DTO validation
 - **class-transformer** - Object transformation
 
-### **Testing**
-- **Postman** - API testing collection
-
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -94,7 +38,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone <repository-url>
-cd armorIQ/server
+cd armor-iq-assignment
 ```
 
 ### 2. Install Dependencies
@@ -310,46 +254,6 @@ Content-Type: application/json
 - Cross-organization access is strictly forbidden
 - Each organization's data is completely isolated
 
-## 🧪 Testing
-
-### Unit Tests
-```bash
-# Run unit tests
-npm run test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:cov
-```
-
-### End-to-End Tests
-```bash
-# Run e2e tests
-npm run test:e2e
-```
-
-### API Testing with Postman
-
-1. **Import Collection**: Import `Task-Management-API.postman_collection.json`
-2. **Set Environment Variables**:
-   - `baseUrl`: `http://localhost:3000/api`
-   - `adminToken`: (will be set automatically)
-   - `userToken`: (will be set automatically)
-3. **Run Tests**: Execute the collection in order
-
-### Test Scenarios Covered
-
-- ✅ User registration and login
-- ✅ JWT token validation
-- ✅ Role-based access control
-- ✅ Organization isolation
-- ✅ Task CRUD operations
-- ✅ Input validation
-- ✅ Error handling
-- ✅ Cross-organization security
-
 ## 📁 Project Structure
 
 ```
@@ -474,22 +378,12 @@ npm run start:prod
 
 ### Docker Deployment
 
-Create a `Dockerfile`:
+```bash
+# Build Docker image
+npm run docker:build
 
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm ci --only=production
-
-COPY . .
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "run", "start:prod"]
+# Run Docker container
+npm run docker:run
 ```
 
 ### Environment Variables for Production
@@ -549,11 +443,9 @@ npm run prisma:migrate      # Run migrations
 npm run prisma:seed         # Seed database
 npm run prisma:studio       # Open Prisma Studio
 
-# Testing
-npm run test               # Run unit tests
-npm run test:watch         # Run tests in watch mode
-npm run test:cov           # Run tests with coverage
-npm run test:e2e           # Run e2e tests
+# Docker
+npm run docker:build       # Build Docker image
+npm run docker:run         # Run Docker container
 
 # Code Quality
 npm run lint               # Run ESLint
